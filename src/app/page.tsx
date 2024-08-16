@@ -12,7 +12,7 @@ export default function Home() {
   const [currentRound, setCurrentRound] = useState([]);
   const [ranking, setRanking] = useState([]);
   const [guessPoints, setGuessPoints] = useState(100);
-  const [predictedMuliplier, setPredictedMultiplier] = useState(1.0);
+  const [predictedMultiplier, setPredictedMultiplier] = useState(1.0);
   const [speed, setSpeed] = useState(1);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Home() {
       ws.send(
         JSON.stringify({
           type: 'start',
-          data: { speed, guessPoints, predictedMuliplier },
+          data: { speed, guessPoints, predictedMultiplier },
         })
       );
     }
@@ -70,7 +70,7 @@ export default function Home() {
                 step={0.01}
                 min={1}
                 max={10}
-                value={predictedMuliplier}
+                value={predictedMultiplier}
                 onChange={(e) => setPredictedMultiplier(Number(e.target.value))}
               />
             </div>

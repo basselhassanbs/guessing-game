@@ -27,14 +27,15 @@ app.prepare().then(() => {
   let interval;
   let speed = 2;
   let freezingPoint = Math.random() * 10;
-  let predictedMuliplier, guessPoints;
+  let predictedMultiplier = 0,
+    guessPoints = 0;
 
   const generateAutoPlayers = (points) => {
     const arr = [];
     for (let i = 0; i < 4; i++) {
       arr.push(new Player(`CPU ${i + 1}`, points, Math.random() * 10));
     }
-    arr.push(new Player(`You`, guessPoints, predictedMuliplier));
+    arr.push(new Player(`You`, guessPoints, predictedMultiplier));
     return arr;
   };
 
@@ -92,7 +93,7 @@ app.prepare().then(() => {
         multiplier = 0;
         freezingPoint = Math.random() * 10;
         speed = data.data.speed;
-        predictedMuliplier = data.data.predictedMuliplier;
+        predictedMultiplier = data.data.predictedMultiplier;
         guessPoints = data.data.guessPoints;
         players = generateAutoPlayers(100);
         wss.clients.forEach((client) => {
